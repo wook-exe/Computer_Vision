@@ -19,6 +19,7 @@ result = np.hstack((img, gray_3c))
 
 
 실행 결과:
+https://github.com/wook-exe/Computer_Vision/blob/main/E01_OpenCV/01_gray.png?raw=true
 
 
 02. 페인팅 붓 크기 조절 기능 추가
@@ -67,7 +68,7 @@ while True:
 
 
 실행 결과:
-
+https://github.com/wook-exe/Computer_Vision/blob/main/E01_OpenCV/02_painting.png?raw=true
 
 03. 마우스로 영역 선택 및 ROI(관심영역) 추출
 이미지에서 원하는 부분을 마우스 드래그로 선택(ROI)하고, 해당 영역만 잘라내어 별도의 창에 띄우거나 저장
@@ -93,4 +94,4 @@ if key == ord('s'):
 
 
 실행 결과:
-
+https://github.com/wook-exe/Computer_Vision/blob/main/E01_OpenCV/03_ROI.png?raw=true
