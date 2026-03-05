@@ -22,7 +22,7 @@ gray_3c = cv.cvtColor(gray, cv.COLOR_GRAY2BGR)
 result = np.hstack((img, gray_3c))
 ```
 
-실행 결과:
+실행 결과 :
 ![image](https://github.com/user-attachments/assets/7b4b8b38-95ce-4360-a54a-118615dddd45)
 
 
@@ -74,7 +74,7 @@ while True:
         break
 ```
 
-실행 결과:
+실행 결과 :
 ![image](https://github.com/user-attachments/assets/2f5a56e6-9922-42b6-8deb-0ca2095012e6)
 
 03. 마우스로 영역 선택 및 ROI(관심영역) 추출
@@ -103,5 +103,5 @@ if key == ord('s'):
     cv.imwrite('roi_saved.jpg', roi)
 ```
 
-실행 결과:
+실행 결과 :
 ![image](https://github.com/user-attachments/assets/f5d177ef-8936-4dbd-a13b-cd6045f1ac7c)
