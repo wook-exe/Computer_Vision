@@ -1,49 +1,49 @@
-import cv2 as cv
-import matplotlib.pyplot as plt
+import cv2 as cv # OpenCV 라이브러리를 가져오고, 코드를 짧고 간결하게 쓰기 위해 'cv'라는 별칭(alias)으로 지정함.
+import matplotlib.pyplot as plt # 파이썬에서 행렬 이미지 데이터를 도화지에 시각화하여 그려주기 위해 matplotlib의 pyplot 모듈을 'plt'로 가져옴.
 
-img = cv.imread("c:/AIOSS/Computer_Vision/E02_Image_Formation/images/rose.png")
-if img is None:
-    raise FileNotFoundError("rose.png 이미지를 찾지 못했습니다.")
+img = cv.imread("rose.png") # 현재 파이썬 스크립트가 실행되는 위치에 있는 "rose.png" 이미지 파일을 읽어들여 img 변수에 저장함. (필요시 전체 경로로 수정 가능)
+if img is None: # 지정한 파일명이나 경로가 잘못되어 이미지를 메모리로 불러오지 못해 변수가 비어있다면
+    raise FileNotFoundError("rose.png 이미지를 찾지 못했습니다.") # 사용자에게 명확한 원인을 알려주기 위해 "파일을 찾지 못했다"는 파이썬 기본 에러를 고의로 발생시키고 중단함.
 
-rows, cols = img.shape[:2]
+rows, cols = img.shape[:2] # 불러온 이미지 배열의 shape 속성(높이, 너비, 컬러 채널) 중 앞의 2개 값만 분리하여, 높이를 rows에, 너비를 cols 변수에 저장함.
 
 # 조건
-angle = 30          # +30도 회전
-scale = 0.8         # 크기 0.8배
-tx = 80             # x축 +40px
-ty = -40            # y축 -20px
+angle = 30          # 원본 이미지를 시계 반대 방향으로 회전시킬 목적으로 회전 각도(30도)를 변수에 저장함.
+scale = 0.8         # 원본 이미지 크기를 80%로 축소 변환하기 위한 크기 조절 비율(0.8배) 값을 변수에 지정함.
+tx = 80             # 이미지를 X축(가로) 방향으로 이동시킬 픽셀 거리 수(+80이므로 오른쪽 이동)를 설정함.
+ty = -40            # 이미지를 Y축(세로) 방향으로 이동시킬 픽셀 거리 수(-40이므로 위쪽 이동)를 설정함.
 
 # 이미지 중심
-center = (cols / 2, rows / 2)
+center = (cols / 2, rows / 2) # 회전과 크기 조절을 할 때 축(기준점)이 될 이미지의 정중앙 픽셀 좌표(너비의 절반, 높이의 절반)를 튜플 형태로 계산해 둠.
 
 # 회전 + 스케일 행렬 생성
-M = cv.getRotationMatrix2D(center, angle, scale)
+M = cv.getRotationMatrix2D(center, angle, scale) # 앞서 구한 중심점(center)을 기준으로 지정한 각도(angle)만큼 돌리고 지정한 크기(scale)로 줄이는 2x3 형태의 수학적 2D 아핀 변환 행렬(M)을 생성함.
 
 # 평행이동 추가
-M[0, 2] += tx
-M[1, 2] += ty
+M[0, 2] += tx # 생성된 2x3 변환 행렬 M의 첫 번째 행, 세 번째 열(X축 이동을 담당하는 자리) 값에 우리가 원하는 가로 평행이동 값(tx)을 강제로 더해줌.
+M[1, 2] += ty # 생성된 2x3 변환 행렬 M의 두 번째 행, 세 번째 열(Y축 이동을 담당하는 자리) 값에 세로 평행이동 값(ty)을 더해 회전/크기/이동 행렬을 최종 완성함.
 
 # 원본 크기 유지
-transformed_img = cv.warpAffine(
-    img,
-    M,
-    (cols, rows),
-    flags=cv.INTER_LINEAR,
-    borderMode=cv.BORDER_CONSTANT,
-    borderValue=(0, 0, 0)
+transformed_img = cv.warpAffine( # 원본 이미지 픽셀들에 우리가 완성한 아핀 변환 행렬 M을 곱하여, 픽셀들의 위치를 통째로 옮긴 새로운 결과 이미지를 생성하는 함수를 호출함.
+    img, # 변환 연산을 적용할 대상이 되는 원본 장미꽃 이미지 배열임.
+    M, # 회전, 크기 조절, 평행 이동 정보가 하나의 공식으로 모두 압축되어 담긴 2x3 아핀 행렬임.
+    (cols, rows), # 변환되어 출력될 새 이미지의 캔버스 크기(가로픽셀, 세로픽셀)를 원본과 동일하게 유지하도록 지정함.
+    flags=cv.INTER_LINEAR, # 픽셀을 옮기다 생기는 빈 소수점 공간을 채우는 이미지 보간법으로, 연산이 빠르고 부드러운 선형 보간법(INTER_LINEAR)을 사용하도록 설정함.
+    borderMode=cv.BORDER_CONSTANT, # 이미지가 이동이나 회전을 해서 캔버스 바깥쪽에 빈 여백(테두리)이 생길 경우, 그 공간을 일정한 단일 색상으로 칠하도록 모드를 설정함.
+    borderValue=(0, 0, 0) # 빈 여백을 칠할 단일 색상 값을 (Blue=0, Green=0, Red=0) 즉, 완전한 검은색으로 채우도록 지정함.
 )
 
 # 시각화
-plt.figure(figsize=(10, 5))
+plt.figure(figsize=(10, 5)) # matplotlib 라이브러리를 이용해 두 이미지를 나란히 그릴 전체 도화지(Figure)의 크기를 가로 10인치, 세로 5인치 비율로 설정함.
 
-plt.subplot(1, 2, 1)
-plt.imshow(cv.cvtColor(img, cv.COLOR_BGR2RGB))
-plt.title("Original")
-plt.axis("off")
+plt.subplot(1, 2, 1) # 전체 도화지를 가로 1줄, 세로 2칸의 구역으로 나누었을 때, 첫 번째(왼쪽) 구역에 그림을 그리겠다고 활성화함.
+plt.imshow(cv.cvtColor(img, cv.COLOR_BGR2RGB)) # OpenCV가 기본적으로 쓰는 BGR 색상 순서를 matplotlib이 사용하는 RGB 색상 순서로 변환하여 원본 이미지를 왼쪽 구역에 화면 출력함.
+plt.title("Original") # 현재 활성화된 왼쪽 구역 이미지 위쪽에 "Original"이라는 제목을 문자열로 달아줌.
+plt.axis("off") # 이미지 주변에 기본적으로 표시되는 X축, Y축 좌표 눈금선과 네모난 테두리 박스를 지워서 깔끔한 사진만 보이게 설정함.
 
-plt.subplot(1, 2, 2)
-plt.imshow(cv.cvtColor(transformed_img, cv.COLOR_BGR2RGB))
-plt.title("Rotated + Scaled + Translated")
-plt.axis("off")
+plt.subplot(1, 2, 2) # 전체 도화지를 가로 1줄, 세로 2칸 구역으로 나눈 상태에서, 이제 두 번째(오른쪽) 구역에 그림을 그리겠다고 활성화함.
+plt.imshow(cv.cvtColor(transformed_img, cv.COLOR_BGR2RGB)) # 회전, 스케일 조정, 평행 이동 변환이 모두 적용된 결과 이미지를 RGB 색상 순서로 변환하여 오른쪽 구역에 띄움.
+plt.title("Rotated + Scaled + Translated") # 현재 활성화된 오른쪽 구역 이미지 위쪽에 "Rotated + Scaled + Translated"라는 변환 내용을 설명하는 제목을 달아줌.
+plt.axis("off") # 오른쪽 구역의 이미지 역시 주변 X축, Y축 눈금선과 겉 테두리 박스를 모두 꺼서 사진만 남김.
 
-plt.show()
+plt.show() # 지금까지 설정해둔 왼쪽 구역(원본)과 오른쪽 구역(변환 결과)의 도화지를 실제로 팝업 창에 렌더링하여 사용자에게 시각적으로 보여주고 프로그램 실행을 대기함.
