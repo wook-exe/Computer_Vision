@@ -1,7 +1,7 @@
 import cv2 as cv
 import matplotlib.pyplot as plt
 
-img = cv.imread("rose.png")
+img = cv.imread("c:/AIOSS/Computer_Vision/E02_Image_Formation/images/rose.png")
 if img is None:
     raise FileNotFoundError("rose.png 이미지를 찾지 못했습니다.")
 
