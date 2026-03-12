@@ -5,7 +5,7 @@
 <br>핵심 코드 :
 Python
 
-# 이미지 로드
+이미지 로드
 ```
 img = cv.imread('soccer.jpg') 
 ```
