@@ -78,6 +78,7 @@ if __name__ == "__main__":
 -----
 
 ### 🖼️ 결과
+![image](https://github.com/user-attachments/assets/f6bd9345-6558-461e-8ddc-3571e347f39e)
 
 ## 2\. 캐니 에지 및 허프 변환 직선 검출 (02\_Hough.py)
 
@@ -147,6 +148,7 @@ if __name__ == "__main__":
 -----
 
 ### 🖼️ 결과
+![image](https://github.com/user-attachments/assets/f6e2d769-79f5-4e96-a850-cb83abe8b49f)
 
 ## 3\. GrabCut 객체 분할 (03\_Grabcut.py)
 
@@ -220,3 +222,4 @@ if __name__ == "__main__":
 ```
 
 ### 🖼️ 결과
+![image](https://github.com/user-attachments/assets/9a74f918-abcc-4a84-80cf-4fabf47e2175)
