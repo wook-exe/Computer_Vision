@@ -73,8 +73,8 @@ def solve_sobel():
     plt.show()
 
 if __name__ == "__main__":
-    solve_sobel()```
-
+    solve_sobel()
+```
 -----
 
 ### 🖼️ 결과
@@ -143,7 +143,8 @@ def solve_hough():
     plt.show()
 
 if __name__ == "__main__":
-    solve_hough()```
+    solve_hough()
+```
 
 -----
 
