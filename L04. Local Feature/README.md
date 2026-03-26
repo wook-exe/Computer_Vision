@@ -1,4 +1,4 @@
-# L04. Local Feature Homework - SIFT & Homography
+# L04. Local Feature - SIFT & Homography
 
 ## 📑 목차
 
@@ -8,7 +8,7 @@
 
 ## 1\. SIFT를 이용한 특징점 검출 및 시각화 (01\_SIFT\_keypoint.py)
 
-과제 목표: SIFT 알고리즘을 사용하여 이미지에서 특징점을 검출하고, 검출된 특징점을 원본 이미지에 시각화합니다.
+과제 목표 : SIFT 알고리즘을 사용하여 이미지에서 특징점을 검출하고, 검출된 특징점을 원본 이미지에 시각화합니다.
 
 ### 💡 핵심 로직
 
@@ -72,11 +72,11 @@ plt.show()
 -----
 
 ### 🖼️ 결과
-![image]()
+![image](https://github.com/user-attachments/assets/1ad1e7f2-d922-4833-80e7-a32d47d1a0bf)
 
 ## 2\. SIFT를 이용한 두 영상 간 특징점 매칭 (02\_SIFT\_Matching.py)
 
-과제 목표: SIFT 알고리즘을 사용하여 두 이미지 간의 특징점을 검출하고, 매칭된 특징점을 시각화합니다.
+과제 목표 : SIFT 알고리즘을 사용하여 두 이미지 간의 특징점을 검출하고, 매칭된 특징점을 시각화합니다.
 
 ### 💡 핵심 로직
 두 개의 이미지(mot_color70.jpg, mot_color80.jpg)에서 추출한 SIFT 특징점을 기반으로 매칭을 수행합니다.
@@ -151,11 +151,11 @@ plt.show()
 -----
 
 ### 🖼️ 결과
-![image]()
+![image](https://github.com/user-attachments/assets/807b5d44-cbb4-439e-ad1d-4be76bab2cd3)
 
 ## 3\. 호모그래피를 이용한 이미지 정합 (Image Alignment) (03\_Image Alignment.py)
 
-과제 목표: SIFT 특징점과 호모그래피를 이용하여 두 이미지를 정합(Alignment)하고, 결과를 시각화합니다.
+과제 목표 : SIFT 특징점과 호모그래피를 이용하여 두 이미지를 정합(Alignment)하고, 결과를 시각화합니다.
 
 ### 💡 핵심 로직
 추출된 SIFT 대응점을 바탕으로 두 이미지의 시점을 맞추는 투영 변환(호모그래피)을 수행하여 파노라마를 생성합니다.
@@ -264,4 +264,4 @@ else:
 -----
 
 ### 🖼️ 결과
-![image]()
+![image](https://github.com/user-attachments/assets/16826f35-dca5-4134-bd9c-5156734e1cc0)
