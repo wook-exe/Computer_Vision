@@ -12,9 +12,9 @@
 
 ### 💡 핵심 로직
 
-이 코드는 주어진 단일 이미지(`mot_color70.jpg`)에서 SIFT 알고리즘을 사용하여 특징점을 검출하고 이를 시각화합니다. 
-**특징점 추출 제한:** `cv.SIFT_create(nfeatures=...)`를 통해 특징점이 너무 많아지지 않도록 개수를 제한합니다.
-**Rich Keypoints 시각화:** `cv.drawKeypoints()` 함수에 `cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS` 플래그를 적용하여 특징점의 단순한 위치뿐만 아니라 방향과 크기(Scale)까지 원 형태로 시각화합니다.
+이 코드는 주어진 단일 이미지(`mot_color70.jpg`)에서 SIFT 알고리즘을 사용하여 특징점을 검출하고 이를 시각화합니다. <br>
+**특징점 추출 제한:** `cv.SIFT_create(nfeatures=...)`를 통해 특징점이 너무 많아지지 않도록 개수를 제한합니다.<br>
+**Rich Keypoints 시각화:** `cv.drawKeypoints()` 함수에 `cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS` 플래그를 적용하여 특징점의 단순한 위치뿐만 아니라 방향과 크기(Scale)까지 원 형태로 시각화합니다.<br>
 **결과 비교:** `matplotlib`을 활용해 원본 이미지와 특징점이 그려진 이미지를 나란히 출력하여 결과를 직관적으로 비교할 수 있습니다
 
 ### 💻 전체 코드
@@ -79,9 +79,9 @@ plt.show()
 과제 목표 : SIFT 알고리즘을 사용하여 두 이미지 간의 특징점을 검출하고, 매칭된 특징점을 시각화합니다.
 
 ### 💡 핵심 로직
-두 개의 이미지(mot_color70.jpg, mot_color80.jpg)에서 추출한 SIFT 특징점을 기반으로 매칭을 수행합니다.
-Brute-Force Matching: cv.BFMatcher(cv.NORM_L2)를 사용하여 모든 특징점 조합 간의 거리를 계산합니다.
-Ratio Test (최근접 이웃 거리 비율): 단순 매칭의 오류를 줄이기 위해 knnMatch()로 각 점당 2개의 매칭점(k=2)을 찾습니다.
+두 개의 이미지(mot_color70.jpg, mot_color80.jpg)에서 추출한 SIFT 특징점을 기반으로 매칭을 수행합니다.<br>
+Brute-Force Matching: cv.BFMatcher(cv.NORM_L2)를 사용하여 모든 특징점 조합 간의 거리를 계산합니다.<br>
+Ratio Test (최근접 이웃 거리 비율): 단순 매칭의 오류를 줄이기 위해 knnMatch()로 각 점당 2개의 매칭점(k=2)을 찾습니다.<br>
 첫 번째로 가까운 점과의 거리가 두 번째로 가까운 점과의 거리의 75% 미만일 때만 유효한 매칭(Good Match)으로 취급하여 정확도를 비약적으로 높입니다.
 
 ### 💻 전체 코드
@@ -158,10 +158,10 @@ plt.show()
 과제 목표 : SIFT 특징점과 호모그래피를 이용하여 두 이미지를 정합(Alignment)하고, 결과를 시각화합니다.
 
 ### 💡 핵심 로직
-추출된 SIFT 대응점을 바탕으로 두 이미지의 시점을 맞추는 투영 변환(호모그래피)을 수행하여 파노라마를 생성합니다.
-Homography 및 RANSAC: cv.findHomography() 함수를 활용하여 3x3 변환 행렬을 찾습니다.
-이 과정에서 cv.RANSAC 알고리즘을 사용하여 오매칭된 이상점(Outlier)의 영향을 배제하고 Inlier 데이터만으로 강건한 행렬을 계산합니다.
-Warp Perspective: 구해진 행렬을 바탕으로 cv.warpPerspective()를 실행하여 한 이미지를 다른 이미지의 시점 평면으로 변환(정렬)시킵니다.
+추출된 SIFT 대응점을 바탕으로 두 이미지의 시점을 맞추는 투영 변환(호모그래피)을 수행하여 파노라마를 생성합니다.<br>
+Homography 및 RANSAC: cv.findHomography() 함수를 활용하여 3x3 변환 행렬을 찾습니다.<br>
+이 과정에서 cv.RANSAC 알고리즘을 사용하여 오매칭된 이상점(Outlier)의 영향을 배제하고 Inlier 데이터만으로 강건한 행렬을 계산합니다.<br>
+Warp Perspective: 구해진 행렬을 바탕으로 cv.warpPerspective()를 실행하여 한 이미지를 다른 이미지의 시점 평면으로 변환(정렬)시킵니다.<br>
 이때 출력 캔버스의 크기는 두 이미지를 합친 파노라마 크기 (w1+w2, max(h1,h2))로 설정하여 영상이 잘리지 않도록 합니다.
 
 ### 💻 전체 코드
