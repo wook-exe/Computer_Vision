@@ -1,0 +1,6 @@
+opencv-python==4.8.1.78
+numpy==1.26.2
+mediapipe==0.10.13
+filterpy==1.4.5
+lap==0.4.0
+sort-tracker==0.1.0
