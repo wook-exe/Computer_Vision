@@ -145,7 +145,8 @@ if __name__ == "__main__": # 이 스크립트가 직접 실행될 때만 아래 
     main() # 메인 함수를 호출해 프로그램을 시작함.
 ```
 
-![image]()
+![image](https://github.com/user-attachments/assets/7296a229-bd0d-48df-b1d3-d5d3512a6e23)
+![image](https://github.com/user-attachments/assets/fb66559d-4b95-42a1-8dfb-6ae888bfe474)
 
 -----
 
@@ -213,4 +214,4 @@ if __name__ == "__main__":
     main() # 메인 함수를 시작함.
 ```
 
-![image]()
+![image](https://github.com/user-attachments/assets/f1f6ec24-a1a5-4ecd-a5e2-b5e6ffef1db1)
